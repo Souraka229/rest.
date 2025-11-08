@@ -40,3 +40,12 @@
     "eslint-config-next": "14.2.5"
   }
 }
+// package.json - AJOUTEZ ces dépendances si manquantes
+{
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0"
+  }
+}
