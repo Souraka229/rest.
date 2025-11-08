@@ -1,14 +1,37 @@
-// app/(auth)/login/page.tsx
 "use client"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { supabase } from "@/lib/supabase/client"
 import { Eye, EyeOff, Mail, Lock } from "lucide-react"
+
+// ==== COMPOSANTS SIMPLES ====
+const Button = ({ children, className = "", ...props }: any) => (
+  <button
+    {...props}
+    className={`bg-blue-600 text-white px-4 py-2 rounded w-full hover:bg-blue-700 transition ${className}`}
+  >
+    {children}
+  </button>
+)
+
+const Input = ({ className = "", ...props }: any) => (
+  <input
+    {...props}
+    className={`border border-gray-300 p-2 rounded w-full focus:ring-2 focus:ring-blue-500 focus:outline-none ${className}`}
+  />
+)
+
+const Card = ({ children, className = "" }: any) => (
+  <div className={`border bg-white rounded-lg p-6 shadow ${className}`}>{children}</div>
+)
+
+const CardHeader = ({ children }: any) => <div className="mb-4">{children}</div>
+const CardTitle = ({ children }: any) => <h2 className="text-xl font-bold text-gray-900">{children}</h2>
+const CardDescription = ({ children }: any) => <p className="text-gray-600">{children}</p>
+const CardContent = ({ children }: any) => <div>{children}</div>
+// ===================================
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -32,15 +55,15 @@ export default function LoginPage() {
       if (error) throw error
 
       const { data: profile } = await supabase
-        .from('profiles')
-        .select('user_type')
-        .eq('id', data.user.id)
+        .from("profiles")
+        .select("user_type")
+        .eq("id", data.user.id)
         .single()
 
-      if (profile?.user_type === 'restaurant') {
-        router.push('/dashboard')
+      if (profile?.user_type === "restaurant") {
+        router.push("/dashboard")
       } else {
-        router.push('/')
+        router.push("/")
       }
     } catch (error: any) {
       setError(error.message || "Erreur de connexion")
@@ -51,20 +74,19 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-      <Card className="w-full max-w-md shadow-xl">
-        <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl font-bold text-gray-900">Connexion</CardTitle>
-          <CardDescription className="text-gray-600">
-            Accédez à votre compte Restafy
-          </CardDescription>
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center space-y-1">
+          <CardTitle>Connexion</CardTitle>
+          <CardDescription>Accédez à votre compte Restafy</CardDescription>
         </CardHeader>
+
         <CardContent>
           {error && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 text-sm">
               {error}
             </div>
           )}
-          
+
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-gray-700">
@@ -109,11 +131,7 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <Button 
-              type="submit" 
-              className="w-full bg-blue-600 hover:bg-blue-700"
-              disabled={loading}
-            >
+            <Button type="submit" disabled={loading}>
               {loading ? "Connexion..." : "Se connecter"}
             </Button>
           </form>
