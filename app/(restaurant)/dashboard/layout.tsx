@@ -117,4 +117,54 @@ export default function DashboardLayout({
                 {[
                   { name: 'Tableau de bord', href: '/dashboard', icon: Home },
                   { name: 'Menu', href: '/dashboard/menu', icon: Utensils },
-                  { name: 'Commandes
+                  { name: 'Commandes', href: '/dashboard/orders', icon: ShoppingCart },
+                  { name: 'Paramètres', href: '/dashboard/settings', icon: Settings },
+                ].map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="group flex items-center px-2 py-2 text-sm font-medium rounded-md text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                  >
+                    <item.icon className="mr-3 h-5 w-5" />
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+            </div>
+            <div className="flex-shrink-0 flex border-t border-gray-200 p-4">
+              <button
+                onClick={handleLogout}
+                className="flex-shrink-0 w-full group block"
+              >
+                <div className="flex items-center">
+                  <LogOut className="h-5 w-5 text-gray-400 group-hover:text-gray-500" />
+                  <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-gray-900">
+                    Déconnexion
+                  </span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main content */}
+      <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
+        {/* Top bar */}
+        <div className="lg:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-white border-b border-gray-200">
+          <button
+            type="button"
+            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <MenuIcon className="h-6 w-6" />
+          </button>
+        </div>
+
+        <main className="flex-1 relative overflow-y-auto focus:outline-none">
+          {children}
+        </main>
+      </div>
+    </div>
+  )
+}
