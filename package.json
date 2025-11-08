@@ -26,7 +26,8 @@
     "date-fns": "^3.6.0",
     "sonner": "^1.5.0",
     "zustand": "^4.5.2",
-    "framer-motion": "^10.16.16"
+    "framer-motion": "^10.16.16",
+    "@radix-ui/react-slot": "^1.0.2"
   },
   "devDependencies": {
     "typescript": "^5.5.2",
@@ -38,14 +39,5 @@
     "tailwindcss": "^3.4.4",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5"
-  }
-}
-// package.json - AJOUTEZ ces dépendances si manquantes
-{
-  "dependencies": {
-    "@radix-ui/react-slot": "^1.0.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0"
   }
 }
