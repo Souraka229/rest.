@@ -1,4 +1,3 @@
-// package.json
 {
   "name": "restafy-mvp",
   "version": "1.0.0",
@@ -26,7 +25,8 @@
     "@hookform/resolvers": "^3.6.0",
     "date-fns": "^3.6.0",
     "sonner": "^1.5.0",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.2",
+    "framer-motion": "^10.16.16"
   },
   "devDependencies": {
     "typescript": "^5.5.2",
