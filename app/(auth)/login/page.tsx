@@ -3,6 +3,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -30,7 +31,6 @@ export default function LoginPage() {
 
       if (error) throw error
 
-      // Redirection
       const { data: profile } = await supabase
         .from('profiles')
         .select('user_type')
@@ -121,9 +121,9 @@ export default function LoginPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Pas de compte ?{" "}
-              <a href="/signup" className="text-blue-600 hover:text-blue-700 font-medium">
+              <Link href="/signup" className="text-blue-600 hover:text-blue-700 font-medium">
                 Créer un compte
-              </a>
+              </Link>
             </p>
           </div>
         </CardContent>
